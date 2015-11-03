@@ -20,9 +20,15 @@ NbVues = 50;
 % STEP 1 : generate NbProj projections of the 3D dataset, over 360°
 [projectionsMatrices] = generateProjectionsMatrices( IntrinseqMatrix, ExtrinseqMatrix, NbVues);
 
+
 % STEP 2 : Cast the problem into a non linear optimization scheme in order
 % to find all projection matrices + all 3D positions
 
+%  Set options for fminunc
+options = optimset('GradObj', 'on', 'MaxIter', 400);
+
+%  Run fminunc to obtain the optimal theta, the function return theta and the cost 
+[theta, cost] = fminunc(@(t)(costFunction(t, X, y)), initial_theta, options);
 
 %Plot the sum of all projection on a single frame
 figure;
