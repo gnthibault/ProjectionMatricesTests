@@ -97,7 +97,7 @@ abs_lambda=sqrt(M(3,1)^2 + M(3,2)^2 + M(3,3)^2);
 % Scale the Matrix with the scale factor
 M = M / abs_lambda;
 
-[IntrinseqMatrix,ExtrinseqMatrix] = factorizeCalibrationMatrix(M)
+[IntrinseqMatrix,ExtrinseqMatrix] = factorizeCalibrationMatrix(M);
 
 % Reproject 3Dpoints to 2D points using the calibration matrix to calculate average pixel errors 
 reprojMatrix = project3DPoints( matrix3D, M );
