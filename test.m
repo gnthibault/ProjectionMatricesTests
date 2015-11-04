@@ -11,7 +11,7 @@ NbBalls = 27;
 [matrix2D]=textread('2D.txt');
 
 %Total number of projections
-NbVues = 50;
+NbVues = 150;
 
 % STEP 0 : play along with a 2D and 3D dataset in order to deduce a
 % calibration matrix of the scene
@@ -34,7 +34,7 @@ end
 
 %  Run fminsearch to obtain the optimal theta, the function return theta and the cost 
 %[theta, cost] = fminunc(@(t)(costFunction(t, X, y)), initial_theta, options);
-options = optimset('MaxIter', 1000);
+options = optimset('MaxIter', 1000,'Display','iter');
 initial_solution = rand(1,3*NbBalls+12*NbVues);
 [solution, cost] = fminsearch(@(t)(costFunction(t, setOf2DPoints)), initial_solution, options);
 

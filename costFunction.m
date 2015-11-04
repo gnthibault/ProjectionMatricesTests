@@ -45,6 +45,7 @@ matProj0 = A*projMatrices(1:8,:);
 matProj1 = zeros(size(matProj0));
 
 uPart = zeros(4,NbVues);
+vPart = zeros(4,NbVues);
 coord3DPart = [ X3d Y3d Z3d o ];
 
 for i=1:1:NbBalls
@@ -54,5 +55,5 @@ for i=1:1:NbBalls
     matProj1(i+NbBalls-1,:) = coord3DPart(i,:)*(vPart.*projMatrices(9:12,:));
 end
 
-J = norm(matProj0-matProj1,2)^2;
+J = norm(matProj0-matProj1,'fro')^2;
 end
