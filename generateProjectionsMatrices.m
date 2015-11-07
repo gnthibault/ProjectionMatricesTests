@@ -1,4 +1,4 @@
-function projectionsMatrices = generateProjectionsMatrices( IntrinseqMatrix, ExtrinseqMatrix, NbVues)
+function projectionsMatrices = generateProjectionsMatrices( IntrinseqMatrix, ExtrinseqMatrix, NbVues, noise)
 %UNTITLED5 Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -49,7 +49,9 @@ for i=1:1:NbVues
     NewExtrinseqMatrix = [atomicRotationMatrix*rotationMatrix translationVector];
     
     %Projection matrix is the product between Intrinseq and extrinseq
-    projectionsMatrices(:,:,i) = IntrinseqMatrix*NewExtrinseqMatrix;
+    goodMatrix = IntrinseqMatrix*NewExtrinseqMatrix;
+    noiseMatrix = noise * rand(size(goodMatrix));
+    projectionsMatrices(:,:,i) = goodMatrix+noiseMatrix;
 end
 
 end

@@ -52,7 +52,7 @@ for i=1:1:NbBalls
     uPart = repmat(squeeze(setOf2DPoints(i,1,:)).',4,1);
     vPart = repmat(squeeze(setOf2DPoints(i,2,:)).',4,1);
     matProj1(i,:) = coord3DPart(i,:)*(uPart.*projMatrices(9:12,:));
-    matProj1(i+NbBalls-1,:) = coord3DPart(i,:)*(vPart.*projMatrices(9:12,:));
+    matProj1(i+NbBalls,:) = coord3DPart(i,:)*(vPart.*projMatrices(9:12,:));
 end
 
 J = norm(matProj0-matProj1,'fro')^2;
